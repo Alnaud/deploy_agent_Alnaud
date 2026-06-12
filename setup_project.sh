@@ -43,9 +43,17 @@ if [ -d "$PROJECT_DIR" ]; then
 fi
 
 
+# Create the folder structure
 echo "Creating project structure..."
-mkdir -p "$PROJECT_DIR/Helpers"
-mkdir -p "$PROJECT_DIR/reports"
+
+# Check write permissions in current directory
+if [ ! -w "." ]; then
+    echo "Error: No write permission in current directory!"
+    exit 1
+fi
+
+mkdir -p "$PROJECT_DIR/Helpers" || { echo "Error: Failed to create Helpers directory!"; exit 1; }
+mkdir -p "$PROJECT_DIR/reports" || { echo "Error: Failed to create reports directory!"; exit 1; }
 
 
 cp attendance_checker.py "$PROJECT_DIR/attendance_checker.py"
