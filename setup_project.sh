@@ -54,3 +54,30 @@ cp config.json "$PROJECT_DIR/Helpers/config.json"
 cp reports.log "$PROJECT_DIR/reports/reports.log"
 
 echo "Directory structure created successfully!"
+# ============ SECTION 3: CONFIG UPDATE WITH SED ============
+
+read -p "Do you want to update attendance thresholds? (yes/no): " ANSWER
+
+if [ "$ANSWER" == "yes" ]; then
+
+
+    read -p "Enter Warning threshold (default 75): " WARNING
+
+
+    read -p "Enter Failure threshold (default 50): " FAILURE
+
+
+    if ! [[ "$WARNING" =~ ^[0-9]+$ ]] || ! [[ "$FAILURE" =~ ^[0-9]+$ ]]; then
+        echo "Error: Thresholds must be numbers!"
+        exit 1
+    fi
+
+
+    sed -i "s/\"warning\": [0-9]*/\"warning\": $WARNING/" "$PROJECT_DIR/Helpers/config.json"
+    sed -i "s/\"failure\": [0-9]*/\"failure\": $FAILURE/" "$PROJECT_DIR/Helpers/config.json"
+
+    echo "Thresholds updated successfully!"
+
+else
+    echo "Keeping default thresholds."
+fi
