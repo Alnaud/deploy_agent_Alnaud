@@ -81,3 +81,27 @@ if [ "$ANSWER" == "yes" ]; then
 else
     echo "Keeping default thresholds."
 fi
+# ============ SECTION 4: ENVIRONMENT HEALTH CHECK ============
+
+echo "Running environment health check..."
+
+# Check if python3 is installed
+if python3 --version 2>/dev/null; then
+    echo "Python3 is installed!"
+else
+    echo "Warning: Python3 is not installed on this system!"
+fi
+
+
+echo "Verifying directory structure..."
+
+if [ -f "$PROJECT_DIR/attendance_checker.py" ] && \
+   [ -f "$PROJECT_DIR/Helpers/assets.csv" ] && \
+   [ -f "$PROJECT_DIR/Helpers/config.json" ] && \
+   [ -f "$PROJECT_DIR/reports/reports.log" ]; then
+    echo "Directory structure verified successfully!"
+else
+    echo "Warning: Some files are missing from the structure!"
+fi
+
+echo "Setup complete! Your project is ready at: $PROJECT_DIR"
