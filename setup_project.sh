@@ -55,7 +55,7 @@ fi
 mkdir -p "$PROJECT_DIR/Helpers" || { echo "Error: Failed to create Helpers directory!"; exit 1; }
 mkdir -p "$PROJECT_DIR/reports" || { echo "Error: Failed to create reports directory!"; exit 1; }
 #appending codes to attendance_checker.py
-cat > attendance_tracker_$input/attendance_checker.py << 'EOF'
+cat > $PROJECT_DIR/attendance_checker.py << 'EOF'
 import csv
 import json
 import os
@@ -104,7 +104,7 @@ if __name__ == "__main__":
 EOF
 echo " Appended to attendance_checker.py"
 #Append codes to assets.csv
-cat > attendance_tracker_$input/Helpers/assets.csv << 'EOF'
+cat > $PROJECT_DIR/Helpers/assets.csv << 'EOF'
 Email	Names	Attendance Count	Absence Count
 alice@example.com	Alice Johnson	14	1
 bob@example.com	Bob Smith	7	8
@@ -114,7 +114,7 @@ EOF
 echo " Appended to Helpers/assets.csv"
 
 #Append codes to config.json file
-cat > attendance_tracker_$input/Helpers/config.json << 'EOF'
+cat > $PROJECT_DIR/Helpers/config.json << 'EOF'
 {
     "thresholds": {
         "warning": 75,
@@ -127,7 +127,7 @@ EOF
 echo "Appended to Helpers/config.json"
 
 #append codes to reports/reports.log
-cat > attendance_tracker_$input/reports/reports.log << 'EOF'
+cat > $PROJECT_DIR/reports/reports.log << 'EOF'
 --- Attendance Report Run: 2026-02-06 18:10:01.468726 ---
 [2026-02-06 18:10:01.469363] ALERT SENT TO bob@example.com: URGENT: Bob Smith, your attendance is 46.7%. You will fail this class.
 [2026-02-06 18:10:01.469424] ALERT SENT TO charlie@example.com: URGENT: Charlie Davis, your attendance is 26.7%. You will fail this class.

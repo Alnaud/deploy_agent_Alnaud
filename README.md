@@ -35,3 +35,5 @@ A shell script that automates the creation of a Student Attendance Tracker works
 ## Requirements
 - bash
 - python3
+
+Video link https://drive.google.com/file/d/1ZJwsMzZOTZMpRIN8U0rM7yPDaKpXrnoo/view?usp=sharing
